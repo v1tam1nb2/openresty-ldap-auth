@@ -14,9 +14,15 @@ git clone https://github.com/v1tam1nb2/openresty-ldap-auth.git
 
 ## ビルド
 
-```
+```bash
 cd openresty-ldap-auth
 docker-compose build
+```
+
+## コンテナ起動
+
+```bash
+docker-compose up -d
 ```
 
 ## Ldaptテストユーザー追加
