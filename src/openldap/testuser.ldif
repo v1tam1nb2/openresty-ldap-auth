@@ -1,0 +1,45 @@
+dn: cn=test001,dc=my-company,dc=com
+givenName:test001
+sn:test001
+cn:test001
+mail:test001@my-company.com
+userPassword::dGVzdDAwMQ==
+objectClass: inetOrgPerson
+objectClass: top
+
+dn: cn=test002,dc=my-company,dc=com
+givenName:test002
+sn:test002
+cn:test002
+mail:test002@my-company.com
+userPassword::dGVzdDAwMg==
+objectClass: inetOrgPerson
+objectClass: top
+
+dn: cn=test003,dc=my-company,dc=com
+givenName:test003
+sn:test003
+cn:test003
+mail:test003@my-company.com
+userPassword::dGVzdDAwMw==
+objectClass: inetOrgPerson
+objectClass: top
+
+dn: cn=test004,dc=my-company,dc=com
+givenName:test004
+sn:test004
+cn:test004
+mail:test004@my-company.com
+userPassword::dGVzdDAwNA==
+objectClass: inetOrgPerson
+objectClass: top
+
+dn: cn=test005,dc=my-company,dc=com
+givenName:test005
+sn:test005
+cn:test005
+mail:test005@my-company.com
+userPassword::dGVzdDAwNQ==
+objectClass: inetOrgPerson
+objectClass: top
+

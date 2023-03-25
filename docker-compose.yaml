@@ -1,0 +1,51 @@
+version: '3'
+services:
+  ngx_ldap_auth:
+    image: nginx-auth-mod:dev
+    hostname: ngx_ldap_auth
+    container_name: ngx_ldap_auth
+    expose:
+    - 9200
+    volumes:
+      - ./src/ngx_auth_mod/auth-ldap.conf:/ngx_auth_mod/auth-ldap.conf
+
+  openresty:
+    image: openresty/openresty:latest
+    hostname: openresty
+    container_name: openresty
+    volumes:
+      - ./src/nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./src/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - ./src/nginx/lua/auth.lua:/etc/nginx/lua/auth.lua
+    ports:
+      - "80:80"
+    restart: always
+
+  ldap-server:
+    image: osixia/openldap:latest
+    restart: always
+    container_name: ldap-server
+    environment:
+      LDAP_ORGANISATION: "My Company"
+      LDAP_DOMAIN: "my-company.com"
+      LDAP_ADMIN_PASSWORD: "admin"
+      LDAP_READONLY_USER: "true"
+      LDAP_READONLY_USER_USERNAME: "readonly"
+      LDAP_READONLY_USER_PASSWORD: "readonly_password"
+      LDAP_TLS_VERIFY_CLIENT: "never" 
+    ports:
+      - "389:389"
+    volumes:
+      - ./src/openldap/testuser.ldif:/openldap/testuser.ldif
+  
+  ldap-admin:
+    image: osixia/phpldapadmin:latest
+    container_name: ldap-admin
+    restart: always
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: "ldap"
+      PHPLDAPADMIN_HTTPS: "false"
+    ports:
+      - "8080:80"
+    links:
+      - "ldap-server:ldap"
