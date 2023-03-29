@@ -25,7 +25,7 @@ docker-compose build
 docker-compose up -d
 ```
 
-## Ldaptテストユーザー追加
+## Ldapテストユーザー追加
 
 パスワードはすべて`givenName`と同じにしている。（例：test001ユーザーのパスワードはtest001）
 
